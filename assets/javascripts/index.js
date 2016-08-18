@@ -1,6 +1,6 @@
 var game = new Phaser.Game(1200, 720, Phaser.CANVAS);
 
-var SHIP = "space_ship";
+var SHIP_IMAGE = "space_ship";
 
 //DEFAULT PLANET PROPERTIES
 var planet = { 
@@ -12,7 +12,7 @@ var planet = {
     gravity: 100
   },
   mars: {
-    cord_x: 100,
+    cord_x: 250,
     cord_y: 450,
     image: 'mars_planet',
     radius: 1/10,
@@ -22,13 +22,16 @@ var planet = {
 
 var initialState = {
   preload: function() {
-    loadImage(SHIP);
+    loadImage(SHIP_IMAGE);
     loadImage(planet.mars.image);
     loadImage(planet.jupiter.image);
   },
 
   create: function() {
     var initial_planets = [planet.mars, planet.jupiter];
+    var ship = game.add.sprite(100, 360, SHIP_IMAGE);
+    ship.scale.setTo(1/10, 1/10);
+
     //ADD PLANETS
     add_planets(initial_planets);
   }
